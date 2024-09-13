@@ -1,46 +1,44 @@
-#!/usr/bin/env/ groovy
+#!/usr/bin/env groovy
 
 pipeline{
-  agent any
-tools{
-maven 'Maven'
-}
- stages{
-    stage('Validate Maven Project'){
-      steps{
-        script{
-          bat 'mvn validate'
-          }
-        }
-      }
-    stage('compile Maven Project'){
-      steps{
-        script{
-          bat 'mvn compile'
-          }
-        }
-      }
- stage('build Maven Project'){
-      steps{
-        script{
-          bat 'mvn build'
-          }
-        }
-      }
- stage('test Maven Project'){
-      steps{
-        script{
-          bat 'mvn test'
-          }
-        }
-      }
- stage('deploy Maven Project'){
-      steps{
-        script{
-          bat 'mvn deploy'
-          }
-        }
-      }
+    agent any
+    tools{
+        maven 'maven 1'
     }
-  }
+
+    stages{
+        stage('Validate Maven Project'){
+            steps{
+                script{
+                    bat 'mvn validate'
+                }
+            }
+        }
+
+        stage('Compile Maven Project'){
+            steps{
+                script{
+                    bat 'mvn compile'
+                }
+            }
+        }
+
+        stage('Test Maven Project'){
+            steps{
+                script{
+                    bat 'mvn test'
+                }
+            }
+        }
+
+        stage('Package Maven Project'){
+            steps{
+                script{
+                    bat 'mvn package'
+                }
+            }
+        }
+    }
+}
+
 
